@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">JetpackNavTest</string>
+    <string name="title">Welcome to \"Title\"</string>
+    <string name="your_journe">Your journey logging assistant</string>
+    <string name="your_email">Username</string>
+    <string name="password">Password</string>
+    <string name="forgot_password">forgot password?</string>
+    <string name="button_log_in">Log in</string>
 </resources>
