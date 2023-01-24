@@ -5,8 +5,12 @@
       <map>
         <entry key="..\:/Users/User/JetpackNavTest2/app/src/main/res/drawable/ic_lock_password.xml" value="0.1715" />
         <entry key="..\:/Users/User/JetpackNavTest2/app/src/main/res/drawable/mybutton.xml" value="0.1715" />
+        <entry key="..\:/Users/User/JetpackNavTest2/app/src/main/res/drawable/shape_primary_button_disabled.xml" value="0.1715" />
+        <entry key="..\:/Users/User/JetpackNavTest2/app/src/main/res/drawable/shape_primary_button_enabled.xml" value="0.1715" />
         <entry key="..\:/Users/User/JetpackNavTest2/app/src/main/res/layout-v28/fragment_sign_in.xml" value="0.1675929884566054" />
-        <entry key="..\:/Users/User/JetpackNavTest2/app/src/main/res/layout/fragment_sign_in.xml" value="0.25" />
+        <entry key="..\:/Users/User/JetpackNavTest2/app/src/main/res/layout/activity_main.xml" value="0.1675929884566054" />
+        <entry key="..\:/Users/User/JetpackNavTest2/app/src/main/res/layout/fragment_reset_password.xml" value="0.25" />
+        <entry key="..\:/Users/User/JetpackNavTest2/app/src/main/res/layout/fragment_sign_in.xml" value="0.18" />
       </map>
     </option>
   </component>
