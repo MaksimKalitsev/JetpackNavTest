@@ -11,9 +11,9 @@ class FragmentResetPassword : Fragment(R.layout.fragment_reset_password) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentResetPasswordBinding.bind(view)
-        binding.toolbar.findNavController().navigateUp()
+      //  binding.toolbar.findNavController().navigate()
 
-        binding.resetTitle.setOnClickListener {
+        binding.buttonReset.setOnClickListener {
 
         }
     }

@@ -16,16 +16,16 @@ class AutorizationActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityAutorizationBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+//       // supportActionBar?.setDisplayHomeAsUpEnabled(true)
         val navHost =
             supportFragmentManager.findFragmentById(R.id.FragmentContainer) as NavHostFragment
         navController = navHost.navController
-
-        NavigationUI.setupActionBarWithNavController(this, navController)
-    }
-
-    override fun onSupportNavigateUp(): Boolean {
-        return navController.navigateUp() || super.onSupportNavigateUp()
-
+//
+//       // NavigationUI.setupActionBarWithNavController(this, navController)
+//    }
+//
+//    override fun onSupportNavigateUp(): Boolean {
+//        return navController.navigateUp() || super.onSupportNavigateUp()
+//
     }
 }
