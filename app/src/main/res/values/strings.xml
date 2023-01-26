@@ -9,4 +9,11 @@
     <string name="reset">Reset</string>
     <string name="enter_username">Enter your username to reset password</string>
     <string name="reset_password">Reset Password</string>
+    <string name="title_activity_bottom">BottomActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="dashboard_fragment">This is dashboard fragment</string>
+    <string name="home_fragment">This is home fragment</string>
+    <string name="notification_fragment">This is notification fragment</string>
 </resources>
