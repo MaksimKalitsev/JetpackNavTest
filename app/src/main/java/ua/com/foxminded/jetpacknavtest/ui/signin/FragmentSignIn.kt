@@ -1,9 +1,10 @@
-package ua.com.foxminded.jetpacknavtest
+package ua.com.foxminded.jetpacknavtest.ui.signin
 
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import ua.com.foxminded.jetpacknavtest.R
 import ua.com.foxminded.jetpacknavtest.databinding.FragmentSignInBinding
 
 class FragmentSignIn : Fragment(R.layout.fragment_sign_in) {

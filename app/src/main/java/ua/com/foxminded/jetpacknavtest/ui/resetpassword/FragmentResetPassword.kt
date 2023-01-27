@@ -1,9 +1,9 @@
-package ua.com.foxminded.jetpacknavtest
+package ua.com.foxminded.jetpacknavtest.ui.resetpassword
 
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
+import ua.com.foxminded.jetpacknavtest.R
 import ua.com.foxminded.jetpacknavtest.databinding.FragmentResetPasswordBinding
 
 class FragmentResetPassword : Fragment(R.layout.fragment_reset_password) {
