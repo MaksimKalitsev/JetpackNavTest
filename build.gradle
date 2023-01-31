@@ -4,6 +4,10 @@ buildscript {
     ext.okhttp_version = "4.9.3"
     ext.retrofit_version = "2.9.0"
 
+    ext {
+        dagger2Version = "2.42"
+    }
+
     repositories {
         google()
         mavenCentral()
