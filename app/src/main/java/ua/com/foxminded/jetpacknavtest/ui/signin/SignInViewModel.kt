@@ -27,10 +27,10 @@ interface Api {
         @Header("Content-Type") contentType: String = "application/x-www-form-urlencoded"
     ): Response<LoginResponse>
 
-//    @POST("logout")
-//    suspend fun logOut(
-//        @Header("Cookie") contentType: String = "kuanticcookie="
-//    ): Response<LogoutResponse>
+    @POST("logout")
+    suspend fun logOut(
+        @Header("Cookie") cookie: String): Response<Unit>
+
 }
 
 fun main() = runBlocking {
@@ -43,11 +43,16 @@ fun main() = runBlocking {
         .build()
     val api: Api = retrofit.create(Api::class.java)
 
-    val response: Response<LoginResponse> = api.signIn("olegkondratenko-driver", "P@ss4Cloudmade156!")
+    val signInResponse: Response<LoginResponse> = api.signIn("olegkondratenko-driver", "P@ss4Cloudmade156!")
+    val token = signInResponse.headers().get("set-cookie")
+    val logoutResponse = token?.let { api.logOut(it) }
+    val result = logoutResponse?.headers()?.get("set-cookie")
 
-    println("LOGIN: $response")
+
+    println("LOGIN: $signInResponse")
+    println("LOGOUT: $result")
 }
-//data class LogoutResponse()
+
 
 data class LoginResponse(
     @SerializedName("login")
