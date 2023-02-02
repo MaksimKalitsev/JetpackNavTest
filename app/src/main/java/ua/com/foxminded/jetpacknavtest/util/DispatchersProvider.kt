@@ -18,7 +18,6 @@ class DispatchersProvider : IDispatchersProvider {
 }
 
 class TestDispatchersProvider : IDispatchersProvider {
-
     override val main = Dispatchers.Unconfined
     override val io = Dispatchers.Unconfined
     override val default = Dispatchers.Unconfined
