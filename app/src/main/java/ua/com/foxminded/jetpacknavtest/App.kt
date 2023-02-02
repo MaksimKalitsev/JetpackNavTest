@@ -1,9 +1,11 @@
 package ua.com.foxminded.jetpacknavtest
 
 import android.app.Application
+import timber.log.Timber
 import ua.com.foxminded.jetpacknavtest.di.AppComponent
 import ua.com.foxminded.jetpacknavtest.di.DaggerAppComponent
 import ua.com.foxminded.jetpacknavtest.di.DebuggingClass
+import ua.com.foxminded.jetpacknavtest.user.ILoginManager
 import javax.inject.Inject
 
 class App: Application() {
@@ -13,13 +15,28 @@ class App: Application() {
     @Inject
     lateinit var debuggingClass: DebuggingClass
 
+    @Inject
+    lateinit var loginManager: ILoginManager
+
     override fun onCreate() {
         super.onCreate()
 
-        appComponent = DaggerAppComponent.factory().create(this)
+        appComponent = DaggerAppComponent.factory().create(this).apply {
+            inject(this@App)
+        }
 
-        appComponent.inject(this)
+        if (BuildConfig.DEBUG) {
+            Timber.plant(Timber.DebugTree())
+        }
         println(debuggingClass.data)
-
+        createUserComponentIfLoggedIn()
     }
+
+    fun createUserComponentIfLoggedIn() =
+        appComponent.appPreferences
+            .lastUserUsername
+            ?.takeUnless { loginManager.isUserLoggedIn }
+            ?.let { username ->
+                loginManager.createUserComponent(username)
+            }
 }

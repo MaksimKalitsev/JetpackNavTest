@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
+    id "kotlin-parcelize"
 }
 
 android {
@@ -52,6 +53,7 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.5.1'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
+    implementation "com.jakewharton.timber:timber:$timberVersion"
 
     implementation "com.google.dagger:dagger:$dagger2Version"
     kapt "com.google.dagger:dagger-compiler:$dagger2Version"

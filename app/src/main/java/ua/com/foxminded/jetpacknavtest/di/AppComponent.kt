@@ -4,11 +4,15 @@ import android.content.Context
 import dagger.BindsInstance
 import dagger.Component
 import ua.com.foxminded.jetpacknavtest.App
+import ua.com.foxminded.jetpacknavtest.data.AppPreferences
 import ua.com.foxminded.jetpacknavtest.ui.signin.FragmentSignIn
+import ua.com.foxminded.jetpacknavtest.ui.signin.SignInViewModel
 
 @Component(modules = [AppModule::class])
 @AppScope
 interface AppComponent {
+
+    val appPreferences: AppPreferences
 
     @Component.Factory
     interface Factory {
@@ -21,4 +25,5 @@ interface AppComponent {
 
     fun inject(app: App)
     fun inject(fragment: FragmentSignIn)
+    fun inject(vm: SignInViewModel)
 }

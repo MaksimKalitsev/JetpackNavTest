@@ -6,6 +6,7 @@ buildscript {
 
     ext {
         dagger2Version = "2.42"
+        timberVersion = "5.0.1"
     }
 
     repositories {

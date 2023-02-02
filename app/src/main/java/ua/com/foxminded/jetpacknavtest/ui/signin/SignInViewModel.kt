@@ -1,8 +1,10 @@
 package ua.com.foxminded.jetpacknavtest.ui.signin
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.google.gson.Gson
 import com.google.gson.annotations.SerializedName
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -13,8 +15,37 @@ import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.Header
 import retrofit2.http.POST
+import ua.com.foxminded.jetpacknavtest.data.network.responses.LoginResponse
+import ua.com.foxminded.jetpacknavtest.user.LoginManager
+import javax.inject.Inject
 
 class SignInViewModel : ViewModel() {
+
+    @Inject
+    lateinit var loginManager: LoginManager
+
+    var isInitialized = false
+        private set
+
+    fun init() {
+        if (isInitialized.not()) {
+            loginManager.isUserLoggedIn
+            isInitialized = true
+        }
+    }
+
+    fun signIn(username: String, password: String) {
+        viewModelScope.launch {
+            // todo: show progress
+            loginManager.login(username, password).onSuccess {
+                // todo: hide progress
+                //  todo: navigate to main screen. Don't forget to kill Authorization activity
+            }.onFailure {
+                // todo: show error snackbar with button "Retry"
+            }
+
+        }
+    }
 
 }
 
@@ -52,61 +83,3 @@ fun main() = runBlocking {
     println("LOGIN: $signInResponse")
     println("LOGOUT: $result")
 }
-
-
-data class LoginResponse(
-    @SerializedName("login")
-    val login: String,
-    @SerializedName("group")
-    val group: String,
-    @SerializedName("first_name")
-    val first_name: String,
-    @SerializedName("last_name")
-    val last_name: String,
-    @SerializedName("right_ids")
-    val right_ids: List<Int>,
-    @SerializedName("prefs")
-    val prefs: List<PrefsResponse>,
-    @SerializedName("timezone")
-    val timezone: String,
-    @SerializedName("locale")
-    val locale: String,
-    @SerializedName("email")
-    val email: String,
-    @SerializedName("access")
-    val access: List<PrefsResponse>,
-    @SerializedName("localisation")
-    val localizationResponse: LocalizationResponse,
-) {
-
-    data class PrefsResponse(
-        @SerializedName("name")
-        val name: String,
-        @SerializedName("value")
-        val value: String
-    )
-
-    data class LocalizationResponse(
-        @SerializedName("date")
-        val date: String,
-        @SerializedName("time")
-        val time: String,
-        @SerializedName("distance")
-        val distance: String,
-        @SerializedName("firstdayofweek")
-        val firstDayOfWeek: Int,
-        @SerializedName("speed")
-        val speed: String,
-        @SerializedName("liquid")
-        val liquid: String,
-        @SerializedName("consumption")
-        val consumptionResponse: ConsumptionResponse
-    ) {
-
-        data class ConsumptionResponse(
-            @SerializedName("fuel")
-            val fuel: String
-        )
-    }
-}
-
