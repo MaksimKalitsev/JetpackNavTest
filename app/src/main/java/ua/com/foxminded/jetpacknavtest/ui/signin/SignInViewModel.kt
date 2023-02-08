@@ -49,37 +49,38 @@ class SignInViewModel : ViewModel() {
 
 }
 
-interface Api {
-    @FormUrlEncoded
-    @POST("login")
-    suspend fun signIn(
-        @Field("login") login: String,
-        @Field("password") password: String,
-        @Header("Content-Type") contentType: String = "application/x-www-form-urlencoded"
-    ): Response<LoginResponse>
-
-    @POST("logout")
-    suspend fun logOut(
-        @Header("Cookie") cookie: String): Response<Unit>
-
-}
-
-fun main() = runBlocking {
-    val loggingInterceptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
-    val client = OkHttpClient.Builder().addInterceptor(loggingInterceptor).build()
-    val retrofit = Retrofit.Builder()
-        .baseUrl("https://fleet.kuantic.com/")
-        .client(client)
-        .addConverterFactory(GsonConverterFactory.create(Gson()))
-        .build()
-    val api: Api = retrofit.create(Api::class.java)
-
-    val signInResponse: Response<LoginResponse> = api.signIn("olegkondratenko-driver", "P@ss4Cloudmade156!")
-    val token = signInResponse.headers().get("set-cookie")
-    val logoutResponse = token?.let { api.logOut(it) }
-    val result = logoutResponse?.headers()?.get("set-cookie")
-
-
-    println("LOGIN: $signInResponse")
-    println("LOGOUT: $result")
-}
+//interface Api {
+//    @FormUrlEncoded
+//    @POST("login")
+//    suspend fun signIn(
+//        @Field("login") login: String,
+//        @Field("password") password: String,
+//        @Header("Content-Type") contentType: String = "application/x-www-form-urlencoded"
+//    ): Response<LoginResponse>
+//
+//    @POST("logout")
+//    suspend fun logOut(
+//        @Header("Cookie") cookie: String): Response<Unit>
+//
+//}
+//
+//fun main() = runBlocking {
+//    val loggingInterceptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+//    val client = OkHttpClient.Builder().addInterceptor(loggingInterceptor).build()
+//
+//    val retrofit = Retrofit.Builder()
+//        .baseUrl("https://fleet.kuantic.com/")
+//        .client(client)
+//        .addConverterFactory(GsonConverterFactory.create(Gson()))
+//        .build()
+//    val api: Api = retrofit.create(Api::class.java)
+//
+//    val signInResponse: Response<LoginResponse> = api.signIn("olegkondratenko-driver", "P@ss4Cloudmade156!")
+//    val token = signInResponse.headers().get("set-cookie")
+//    val logoutResponse = token?.let { api.logOut(it) }
+//    val result = logoutResponse?.headers()?.get("set-cookie")
+//
+//
+//    println("LOGIN: $signInResponse")
+//    println("LOGOUT: $result")
+//}

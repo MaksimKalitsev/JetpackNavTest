@@ -3,11 +3,16 @@ package ua.com.foxminded.jetpacknavtest.di
 import android.content.Context
 import android.content.SharedPreferences
 import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.moshi.MoshiConverterFactory
 import ua.com.foxminded.jetpacknavtest.data.AppPreferences
 import ua.com.foxminded.jetpacknavtest.data.Const.APP_SHARED_PREFERENCES_NAME
 import ua.com.foxminded.jetpacknavtest.data.IAppPreferences
@@ -44,19 +49,37 @@ class AppModule {
     fun provideRetrofit(
         okHttpClient: OkHttpClient,
         gson: Gson
-    ): Retrofit = TODO()
+    ): Retrofit{
+        return Retrofit.Builder()
+            .baseUrl("https://fleet.kuantic.com/")
+            .client(provideOkHttpClient())
+            .addConverterFactory(GsonConverterFactory.create(gson))
+            .build()
+    }
 
     @Provides
     @AppScope
-    fun provideOkHttpClient(): OkHttpClient = TODO()
+    fun provideOkHttpClient(): OkHttpClient {
+        return OkHttpClient.Builder()
+            .addInterceptor(createLoggingInterceptor())
+            .build()
+    }
+
+    private fun createLoggingInterceptor(): Interceptor {
+        return HttpLoggingInterceptor()
+            .setLevel(HttpLoggingInterceptor.Level.BODY)
+    }
 
     @Provides
     @AppScope
-    fun provideGson(): Gson = TODO()
+    fun provideGson(): Gson {
+       return Gson()
+    }
 
     @Provides
     @AppScope
-    fun provideDebuggingClass(): DebuggingClass = DebuggingClass("data: ${ThreadLocalRandom.current().nextInt(0, 100)}")
+    fun provideDebuggingClass(): DebuggingClass =
+        DebuggingClass("data: ${ThreadLocalRandom.current().nextInt(0, 100)}")
 
     @Provides
     @AppScope
@@ -88,7 +111,9 @@ class AppModule {
 
     @Provides
     @AppScope
-    fun provideApi(retrofit: Retrofit): Api = TODO("Not implemented")
+    fun provideApi(retrofit: Retrofit): Api {
+        return retrofit.create(Api::class.java)
+    }
 
 }
 

@@ -1,6 +1,8 @@
 package ua.com.foxminded.jetpacknavtest.data.network.responses
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 import ua.com.foxminded.jetpacknavtest.data.models.LoginInfo
 
 data class LoginResponse(
@@ -30,12 +32,13 @@ data class LoginResponse(
 
     fun toLoginInfo(): LoginInfo = TODO("Not implemented")
 
+    @Parcelize
     data class PrefsResponse(
         @SerializedName("name")
         val name: String,
         @SerializedName("value")
         val value: String
-    )
+    ): Parcelable
 
     data class LocalizationResponse(
         @SerializedName("date")
