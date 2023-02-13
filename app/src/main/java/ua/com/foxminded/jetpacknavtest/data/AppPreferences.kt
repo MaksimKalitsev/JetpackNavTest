@@ -11,8 +11,11 @@ class AppPreferences(
 ): IAppPreferences  {
 
     override var lastUserUsername: String?
-        get() = TODO("Not yet implemented")
+        get() = run{
+            // todo:
+            null
+        }
         set(value) {
-            TODO()
+            // todo:
         }
 }

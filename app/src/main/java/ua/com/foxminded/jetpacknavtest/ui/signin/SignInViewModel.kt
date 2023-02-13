@@ -1,21 +1,10 @@
 package ua.com.foxminded.jetpacknavtest.ui.signin
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.google.gson.Gson
-import com.google.gson.annotations.SerializedName
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
-import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
-import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.Header
-import retrofit2.http.POST
-import ua.com.foxminded.jetpacknavtest.data.network.responses.LoginResponse
 import ua.com.foxminded.jetpacknavtest.user.LoginManager
 import javax.inject.Inject
 
@@ -23,6 +12,8 @@ class SignInViewModel : ViewModel() {
 
     @Inject
     lateinit var loginManager: LoginManager
+
+    val progressLiveData = MutableLiveData<RequestState>()
 
     var isInitialized = false
         private set
@@ -36,14 +27,13 @@ class SignInViewModel : ViewModel() {
 
     fun signIn(username: String, password: String) {
         viewModelScope.launch {
-            // todo: show progress
+            progressLiveData.value = RequestState.LOADING
+            delay(1000)
             loginManager.login(username, password).onSuccess {
-                // todo: hide progress
-                //  todo: navigate to main screen. Don't forget to kill Authorization activity
+                progressLiveData.value = RequestState.SUCCESS
             }.onFailure {
-                // todo: show error snackbar with button "Retry"
+                progressLiveData.value = RequestState.ERROR
             }
-
         }
     }
 

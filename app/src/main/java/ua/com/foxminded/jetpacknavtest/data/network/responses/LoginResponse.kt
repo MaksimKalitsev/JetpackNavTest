@@ -3,6 +3,7 @@ package ua.com.foxminded.jetpacknavtest.data.network.responses
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
+import ua.com.foxminded.jetpacknavtest.data.models.DriverInfo
 import ua.com.foxminded.jetpacknavtest.data.models.LoginInfo
 
 data class LoginResponse(
@@ -30,7 +31,23 @@ data class LoginResponse(
     val localizationResponse: LocalizationResponse,
 ) {
 
-    fun toLoginInfo(): LoginInfo = TODO("Not implemented")
+    fun toLoginInfo(password : String, cookie : String): LoginInfo = LoginInfo(
+        cookie,
+        password,
+        login,
+        group,
+        first_name,
+        last_name,
+        right_ids,
+        prefs,
+        timezone,
+        locale,
+        email,
+        access,
+        localizationResponse,
+        DriverInfo.emptyInstance()
+
+    )
 
     @Parcelize
     data class PrefsResponse(
@@ -40,6 +57,7 @@ data class LoginResponse(
         val value: String
     ): Parcelable
 
+    @Parcelize
     data class LocalizationResponse(
         @SerializedName("date")
         val date: String,
@@ -55,12 +73,13 @@ data class LoginResponse(
         val liquid: String,
         @SerializedName("consumption")
         val consumptionResponse: ConsumptionResponse
-    ) {
+    ): Parcelable {
 
+        @Parcelize
         data class ConsumptionResponse(
             @SerializedName("fuel")
             val fuel: String
-        )
+        ):Parcelable
     }
 }
 

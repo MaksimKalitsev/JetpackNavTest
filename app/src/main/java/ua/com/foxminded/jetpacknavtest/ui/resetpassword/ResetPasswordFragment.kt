@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import ua.com.foxminded.jetpacknavtest.R
 import ua.com.foxminded.jetpacknavtest.databinding.FragmentResetPasswordBinding
 
-class FragmentResetPassword : Fragment() {
+class ResetPasswordFragment : Fragment() {
     private var _binding: FragmentResetPasswordBinding? = null
     private val binding get() = _binding!!
 

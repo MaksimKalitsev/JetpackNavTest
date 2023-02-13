@@ -17,17 +17,17 @@ data class LoginInfo (
     val timezone: String,
     val locale: String,
     val email: String,
-//    val access: List<KeyValueBean>,
-//    val localisation: LocalisationBean,
+    val access: List<LoginResponse.PrefsResponse>,
+    val localisation: LoginResponse.LocalizationResponse,
     val driver: DriverInfo,
 ): Parcelable {
-//    val isFleetManager: Boolean
-//        get() = run {
-//            this.access.forEach {
-//                if (it.name == "SMART_FLEET_MANAGER") return@run true
-//            }
-//            return@run false
-//        }
+    val isFleetManager: Boolean
+        get() = run {
+            this.access.forEach {
+                if (it.name == "SMART_FLEET_MANAGER") return@run true
+            }
+            return@run false
+        }
 }
 
 @Parcelize

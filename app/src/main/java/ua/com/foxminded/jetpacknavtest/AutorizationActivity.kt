@@ -21,5 +21,6 @@ class AutorizationActivity : AppCompatActivity() {
         val navHost =
             supportFragmentManager.findFragmentById(R.id.FragmentContainer) as NavHostFragment
         navController = navHost.navController
+
     }
 }

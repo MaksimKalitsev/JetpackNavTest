@@ -13,17 +13,19 @@ class LoginRepository(
     private val api: Api
 ) : ILoginRepository {
 
-    override suspend fun login(username: String, password: String): Result<LoginInfo> = try {
-//        val requestTest = DataClass with(username, password)
-//        api.signIn(requestTest)
+    override suspend fun login(username: String, password: String): Result<LoginInfo> {
+        try {
+            val responseServer = api.signIn(username, password)
+            val cookie = responseServer.headers().get("set-cookie")
+                ?: return Result.failure(IllegalStateException("absent cookie"))
 
-//        val token = responseTest.headers().get("set-cookie")
-//        and here we have to get the token
-
-        TODO("Not yet implemented")
-        //       Result.success()
-    } catch (ex: Exception) {
-        Result.failure(ex)
+            return responseServer.body()
+                ?.toLoginInfo(password, cookie)
+                ?.let { Result.success(it) }
+                ?: Result.failure(IllegalStateException("Login response body is absent"))
+        } catch (ex: Exception) {
+            return Result.failure(ex)
+        }
     }
 
     override suspend fun logout(): Result<Unit> {

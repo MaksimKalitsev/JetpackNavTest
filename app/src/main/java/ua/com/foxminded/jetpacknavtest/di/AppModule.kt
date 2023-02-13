@@ -42,6 +42,9 @@ class AppModule {
 
         @Binds
         fun bindDispatchersProvider(impl: DispatchersProvider): IDispatchersProvider
+
+        @Binds
+        fun bindInterceptor(impl: HttpLoggingInterceptor): Interceptor
     }
 
     @Provides
@@ -52,20 +55,21 @@ class AppModule {
     ): Retrofit{
         return Retrofit.Builder()
             .baseUrl("https://fleet.kuantic.com/")
-            .client(provideOkHttpClient())
+            .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
     }
 
     @Provides
     @AppScope
-    fun provideOkHttpClient(): OkHttpClient {
+    fun provideOkHttpClient(interceptor: HttpLoggingInterceptor): OkHttpClient {
         return OkHttpClient.Builder()
-            .addInterceptor(createLoggingInterceptor())
+            .addInterceptor(interceptor)
             .build()
     }
 
-    private fun createLoggingInterceptor(): Interceptor {
+    @Provides
+    fun createLoggingInterceptor(): HttpLoggingInterceptor {
         return HttpLoggingInterceptor()
             .setLevel(HttpLoggingInterceptor.Level.BODY)
     }

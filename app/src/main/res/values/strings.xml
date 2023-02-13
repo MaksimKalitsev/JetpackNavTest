@@ -16,4 +16,6 @@
     <string name="dashboard_fragment">This is dashboard fragment</string>
     <string name="home_fragment">This is home fragment</string>
     <string name="notification_fragment">This is notification fragment</string>
+    <string name="retry_snackbar">RETRY</string>
+    <string name="error_snackbar">Something wrong</string>
 </resources>

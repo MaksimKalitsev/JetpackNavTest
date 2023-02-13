@@ -15,15 +15,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.JetpackNavTest"
         tools:targetApi="31">
-<!--        <activity-->
-<!--            android:name=".BottomActivity"-->
-<!--            android:exported="true"-->
-<!--            android:label="@string/title_activity_bottom" >-->
-<!--        <intent-filter>-->
-<!--            <action android:name="android.intent.action.MAIN" />-->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:label="@string/title_activity_bottom"/>
 
-<!--            <category android:name="android.intent.category.LAUNCHER" />-->
-<!--        </intent-filter>-->
         <activity
             android:name=".AutorizationActivity"
             android:exported="true"
