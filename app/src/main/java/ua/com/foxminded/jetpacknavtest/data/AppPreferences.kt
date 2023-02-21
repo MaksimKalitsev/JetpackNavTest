@@ -1,21 +1,25 @@
 package ua.com.foxminded.jetpacknavtest.data
 
+import android.content.Context
 import android.content.SharedPreferences
+
+
 
 interface IAppPreferences {
     var lastUserUsername: String?
 }
 
 class AppPreferences(
-    sharedPreferences: SharedPreferences
-): IAppPreferences  {
+    private val sharedPreferences: SharedPreferences
+) : IAppPreferences {
+
+    companion object {
+        private const val LAST_USERNAME_KEY = "LAST_USERNAME_KEY"
+    }
 
     override var lastUserUsername: String?
-        get() = run{
-            // todo:
-            null
-        }
+        get() = sharedPreferences.getString(LAST_USERNAME_KEY, null)
         set(value) {
-            // todo:
+           sharedPreferences.edit().putString(LAST_USERNAME_KEY, value).apply()
         }
 }

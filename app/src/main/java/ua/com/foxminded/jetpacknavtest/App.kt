@@ -32,10 +32,10 @@ class App: Application() {
         createUserComponentIfLoggedIn()
     }
 
-    fun createUserComponentIfLoggedIn() =
+    private fun createUserComponentIfLoggedIn() =
         appComponent.appPreferences
             .lastUserUsername
-            ?.takeUnless { loginManager.isUserLoggedIn }
+            ?.takeIf { loginManager.isUserLoggedIn }
             ?.let { username ->
                 loginManager.createUserComponent(username)
             }

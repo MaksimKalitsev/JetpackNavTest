@@ -51,8 +51,9 @@ class SignInFragment : Fragment() {
             }
             RequestState.SUCCESS -> {
                 binding.progressBar.visibility = View.GONE
-//                findNavController().navigate(R.id.action_AuthorizationActivity_to_MainActivity)
-  //              requireActivity()//.finish()
+                findNavController().navigate(R.id.action_AuthorizationActivity_to_MainActivity)
+                requireActivity()
+                    .finish()
             }
         }
     }
@@ -102,7 +103,8 @@ class SignInFragment : Fragment() {
 
     private fun checkEnabledEditText() = with(binding) {
         buttonLogIn.isEnabled =
-            emailTextInput.text.isNullOrEmpty().not()  && passwordTextInput.text.isNullOrEmpty().not()
+            emailTextInput.text.isNullOrEmpty().not() && passwordTextInput.text.isNullOrEmpty()
+                .not()
     }
 
     override fun onDestroyView() {

@@ -1,6 +1,7 @@
 package ua.com.foxminded.jetpacknavtest.data
 
 import android.content.SharedPreferences
+import com.google.gson.Gson
 import ua.com.foxminded.jetpacknavtest.data.models.LoginInfo
 
 interface IUserPreferences {
@@ -11,23 +12,39 @@ interface IUserPreferences {
 }
 
 class UserPreferences(
-    private val  sharedPreferences: SharedPreferences
-): IUserPreferences {
+    private val sharedPreferences: SharedPreferences
+) : IUserPreferences {
+
+    companion object {
+
+        private const val USERNAME_KEY = "USERNAME_KEY"
+        private const val PRIVACY_POLICY_KEY = "PRIVACY_POLICY_KEY"
+        private const val LOGIN_INFO_KEY = "LOGIN_INFO_KEY"
+    }
+
+    private val gson = Gson()
+
     override var username: String?
-        get() = TODO("Not yet implemented")
+        get() = sharedPreferences.getString(USERNAME_KEY, null)
         set(value) {
-            TODO()
+            sharedPreferences.edit().putString(USERNAME_KEY, value).apply()
         }
     override var isPrivacyPolicyAccepted: Boolean
-        get() = TODO("Not yet implemented")
+        get() = sharedPreferences.getBoolean(PRIVACY_POLICY_KEY, false)
         set(value) {
-            TODO()
+            sharedPreferences.edit().putBoolean(PRIVACY_POLICY_KEY, value).apply()
         }
     override var loginInfo: LoginInfo?
-        get() = TODO("Not yet implemented")
+        get() = run {
+            val json = sharedPreferences.getString(LOGIN_INFO_KEY, null)
+            return gson.fromJson(json, LoginInfo::class.java)
+        }
         set(value) {
-            TODO()
+            sharedPreferences.edit().putString(LOGIN_INFO_KEY, gson.toJson(value)).apply()
+
         }
 
-    override fun clearPreferences() = TODO("Not yet implemented")
+    override fun clearPreferences(){
+        sharedPreferences.edit().clear().apply()
+    }
 }

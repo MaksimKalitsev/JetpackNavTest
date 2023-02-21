@@ -1,10 +1,8 @@
 package ua.com.foxminded.jetpacknavtest.data.network
 
 import retrofit2.Response
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.Header
-import retrofit2.http.POST
+import retrofit2.http.*
+import ua.com.foxminded.jetpacknavtest.data.models.DriverInfo
 import ua.com.foxminded.jetpacknavtest.data.network.responses.LoginResponse
 
 interface Api {
@@ -18,6 +16,12 @@ interface Api {
 
     @POST("logout")
     suspend fun logOut(
-        @Header("Cookie") cookie: String): Response<Unit>
+        @Header("Cookie") cookie: String
+    ): Response<Unit>
+
+    @GET("rest/drivers")
+    suspend fun getDrivers(
+        @Header("Cookie") cookie: String
+    ): List<DriverInfo>
 
 }

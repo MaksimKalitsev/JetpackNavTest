@@ -1,5 +1,6 @@
 package ua.com.foxminded.jetpacknavtest.data.network.repository
 
+import ua.com.foxminded.jetpacknavtest.data.models.DriverInfo
 import ua.com.foxminded.jetpacknavtest.data.models.LoginInfo
 import ua.com.foxminded.jetpacknavtest.data.network.Api
 import kotlin.Exception
@@ -7,6 +8,7 @@ import kotlin.Exception
 interface ILoginRepository {
     suspend fun login(username: String, password: String): Result<LoginInfo>
     suspend fun logout(): Result<Unit>
+    suspend fun currentDriver(email: String): Result<DriverInfo>
 }
 
 class LoginRepository(
@@ -29,9 +31,20 @@ class LoginRepository(
     }
 
     override suspend fun logout(): Result<Unit> {
-//        api.logOut(cookie = "Cookie")
-//        I don't understand what we should get here
+        val responseServer = api.logOut("Cookie")
+        val result = responseServer.headers()["set-cookie"]
         TODO("Not yet implemented")
     }
+
+    override suspend fun currentDriver(email: String): Result<DriverInfo> {
+        return try {
+            val responseServer = api.getDrivers("Cookie")
+            val result = responseServer.filter { it.email == email }
+            Result.success(result.first())
+        } catch (ex: Exception) {
+            Result.failure(ex)
+        }
+    }
+
 
 }

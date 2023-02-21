@@ -1,8 +1,15 @@
 package ua.com.foxminded.jetpacknavtest.data.models
 
 import android.os.Parcelable
+import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 import ua.com.foxminded.jetpacknavtest.data.network.responses.LoginResponse
+@Parcelize
+data class TestLogin(
+    val username: String,
+    val key: String,
+    val email: String
+):Parcelable
 
 @Parcelize
 data class LoginInfo (
@@ -19,7 +26,7 @@ data class LoginInfo (
     val email: String,
     val access: List<LoginResponse.PrefsResponse>,
     val localisation: LoginResponse.LocalizationResponse,
-    val driver: DriverInfo,
+    var driver: DriverInfo,
 ): Parcelable {
     val isFleetManager: Boolean
         get() = run {
@@ -28,12 +35,15 @@ data class LoginInfo (
             }
             return@run false
         }
+
 }
 
 @Parcelize
 data class DriverInfo (
+    @SerializedName("id")
     val id: String,
-    val group: String
+    @SerializedName("email")
+    val email: String
 ): Parcelable {
     companion object {
         fun emptyInstance() = DriverInfo("", "")
