@@ -17,6 +17,7 @@ import ua.com.foxminded.jetpacknavtest.data.AppPreferences
 import ua.com.foxminded.jetpacknavtest.data.Const.APP_SHARED_PREFERENCES_NAME
 import ua.com.foxminded.jetpacknavtest.data.IAppPreferences
 import ua.com.foxminded.jetpacknavtest.data.network.Api
+import ua.com.foxminded.jetpacknavtest.data.network.interceptors.UnzippingInterceptor
 import ua.com.foxminded.jetpacknavtest.data.network.repository.ILoginRepository
 import ua.com.foxminded.jetpacknavtest.data.network.repository.LoginRepository
 import ua.com.foxminded.jetpacknavtest.di.qualifiers.AppSharedPrefs
@@ -64,6 +65,7 @@ class AppModule {
     @AppScope
     fun provideOkHttpClient(interceptor: HttpLoggingInterceptor): OkHttpClient {
         return OkHttpClient.Builder()
+            .addInterceptor(UnzippingInterceptor())
             .addInterceptor(interceptor)
             .build()
     }

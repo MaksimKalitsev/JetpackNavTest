@@ -2,6 +2,7 @@ package ua.com.foxminded.jetpacknavtest.user
 
 import android.content.Context
 import kotlinx.coroutines.withContext
+import okhttp3.Cookie
 import ua.com.foxminded.jetpacknavtest.data.AppPreferences
 import ua.com.foxminded.jetpacknavtest.data.models.DriverInfo
 import ua.com.foxminded.jetpacknavtest.data.models.LoginInfo
@@ -39,7 +40,7 @@ class LoginManager(
 
             val loginInfo = result.getOrThrow()
             val resultDriver: Result<DriverInfo> = withContext(dispatchersProvider.io) {
-                loginRepository.currentDriver(email = loginInfo.email)
+                loginRepository.currentDriver(email = loginInfo.email, cookie = loginInfo.cookie)
             }
             return if (resultDriver.isSuccess) {
 
@@ -66,8 +67,6 @@ class LoginManager(
         // todo: set cookie to authorization interceptor
         appPreferences.lastUserUsername = loginInfo.username
         with(userComponent!!.userPreferences) {
-            // todo: uncomment and implement three methods below
-            clearUserData()
             username = loginInfo.username
             this.loginInfo = loginInfo
         }
@@ -75,7 +74,7 @@ class LoginManager(
 
     private fun clearUserData() {
         userComponent!!.userPreferences.clearPreferences()
-//        appPreferences.lastUserUsername = null
-//        userComponent = null
+        appPreferences.lastUserUsername = null
+        userComponent = null
     }
 }

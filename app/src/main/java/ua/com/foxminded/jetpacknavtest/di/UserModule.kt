@@ -2,6 +2,7 @@ package ua.com.foxminded.jetpacknavtest.di
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.google.gson.Gson
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -27,6 +28,6 @@ class UserModule {
 
     @Provides
     @UserScope
-    fun provideUserPreferences(@UserSharedPrefs sharedPreferences: SharedPreferences): UserPreferences =
-        UserPreferences(sharedPreferences)
+    fun provideUserPreferences(@UserSharedPrefs sharedPreferences: SharedPreferences, gson: Gson): UserPreferences =
+        UserPreferences(sharedPreferences, gson)
 }

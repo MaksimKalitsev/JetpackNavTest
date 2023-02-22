@@ -4,12 +4,6 @@ import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 import ua.com.foxminded.jetpacknavtest.data.network.responses.LoginResponse
-@Parcelize
-data class TestLogin(
-    val username: String,
-    val key: String,
-    val email: String
-):Parcelable
 
 @Parcelize
 data class LoginInfo (

@@ -19,6 +19,10 @@ interface Api {
         @Header("Cookie") cookie: String
     ): Response<Unit>
 
+    @Headers(value = [
+        "Accept: application/json",
+        "Accept-Encoding: gzip"
+    ])
     @GET("rest/drivers")
     suspend fun getDrivers(
         @Header("Cookie") cookie: String

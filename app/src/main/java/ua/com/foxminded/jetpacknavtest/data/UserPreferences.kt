@@ -12,7 +12,7 @@ interface IUserPreferences {
 }
 
 class UserPreferences(
-    private val sharedPreferences: SharedPreferences
+    private val sharedPreferences: SharedPreferences, private val gson: Gson
 ) : IUserPreferences {
 
     companion object {
@@ -22,7 +22,6 @@ class UserPreferences(
         private const val LOGIN_INFO_KEY = "LOGIN_INFO_KEY"
     }
 
-    private val gson = Gson()
 
     override var username: String?
         get() = sharedPreferences.getString(USERNAME_KEY, null)

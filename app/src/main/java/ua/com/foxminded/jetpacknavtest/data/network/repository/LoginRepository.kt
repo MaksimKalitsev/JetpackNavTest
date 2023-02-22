@@ -8,7 +8,7 @@ import kotlin.Exception
 interface ILoginRepository {
     suspend fun login(username: String, password: String): Result<LoginInfo>
     suspend fun logout(): Result<Unit>
-    suspend fun currentDriver(email: String): Result<DriverInfo>
+    suspend fun currentDriver(email: String, cookie: String): Result<DriverInfo>
 }
 
 class LoginRepository(
@@ -36,9 +36,9 @@ class LoginRepository(
         TODO("Not yet implemented")
     }
 
-    override suspend fun currentDriver(email: String): Result<DriverInfo> {
+    override suspend fun currentDriver(email: String, cookie: String): Result<DriverInfo> {
         return try {
-            val responseServer = api.getDrivers("Cookie")
+            val responseServer = api.getDrivers(cookie)
             val result = responseServer.filter { it.email == email }
             Result.success(result.first())
         } catch (ex: Exception) {
