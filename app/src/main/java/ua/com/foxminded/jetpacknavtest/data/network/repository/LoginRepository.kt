@@ -7,7 +7,7 @@ import kotlin.Exception
 
 interface ILoginRepository {
     suspend fun login(username: String, password: String): Result<LoginInfo>
-    suspend fun logout(): Result<Unit>
+    suspend fun logout(cookie: String): Result<Unit>
     suspend fun currentDriver(email: String, cookie: String): Result<DriverInfo>
 }
 
@@ -18,7 +18,7 @@ class LoginRepository(
     override suspend fun login(username: String, password: String): Result<LoginInfo> {
         try {
             val responseServer = api.signIn(username, password)
-            val cookie = responseServer.headers().get("set-cookie")
+            val cookie = responseServer.headers()["set-cookie"]
                 ?: return Result.failure(IllegalStateException("absent cookie"))
 
             return responseServer.body()
@@ -30,11 +30,20 @@ class LoginRepository(
         }
     }
 
-    override suspend fun logout(): Result<Unit> {
-        val responseServer = api.logOut("Cookie")
-        val result = responseServer.headers()["set-cookie"]
-        TODO("Not yet implemented")
-    }
+    override suspend fun logout(cookie: String): Result<Unit> =
+        try {
+            val responseServer = api.logOut(cookie)
+            if (responseServer.isSuccessful) {
+                // todo: check actual cookie presence
+                val logOutResponse: String? = responseServer.headers()["set-cookie"]
+                logOutResponse?.checkEmptyCookie()
+                Result.success(Unit)
+            } else Result.failure(IllegalStateException("Logout exception"))
+
+        } catch (ex: Exception) {
+            Result.failure(ex)
+        }
+
 
     override suspend fun currentDriver(email: String, cookie: String): Result<DriverInfo> {
         return try {
@@ -46,5 +55,11 @@ class LoginRepository(
         }
     }
 
-
+    private fun String.checkEmptyCookie(): Boolean {
+        val splitCookie: List<String> = split(";")
+        return splitCookie[0].split("=").size == 1
+    }
 }
+
+
+

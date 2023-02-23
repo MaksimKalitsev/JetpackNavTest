@@ -16,7 +16,7 @@ interface ILoginManager {
     val isUserLoggedIn: Boolean
     val userComponent: UserComponent?
     suspend fun login(username: String, password: String): Result<Unit>
-    suspend fun logout(): Result<Unit>
+    suspend fun logout(cookie: String): Result<Unit>
     fun createUserComponent(username: String)
 }
 
@@ -50,8 +50,14 @@ class LoginManager(
         } else Result.failure(result.exceptionOrNull() ?: Exception("Unknown exception"))
     }
 
-    override suspend fun logout(): Result<Unit> {
-        TODO("Not yet implemented")
+    override suspend fun logout(cookie: String): Result<Unit> {
+        val result:Result<Unit> = withContext(dispatchersProvider.io){
+            loginRepository.logout(cookie)
+        }
+        return if (result.isSuccess){
+            clearUserData()
+            Result.success(Unit)
+        } else Result.failure(result.exceptionOrNull()?:Exception("Something exception"))
     }
 
     override fun createUserComponent(username: String) {
