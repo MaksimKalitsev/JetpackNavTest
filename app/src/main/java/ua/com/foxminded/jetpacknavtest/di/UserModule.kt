@@ -8,6 +8,9 @@ import dagger.Module
 import dagger.Provides
 import ua.com.foxminded.jetpacknavtest.data.IUserPreferences
 import ua.com.foxminded.jetpacknavtest.data.UserPreferences
+import ua.com.foxminded.jetpacknavtest.data.network.Api
+import ua.com.foxminded.jetpacknavtest.data.network.repository.ITripsRepository
+import ua.com.foxminded.jetpacknavtest.data.network.repository.TripsRepository
 import ua.com.foxminded.jetpacknavtest.di.qualifiers.UserSharedPrefs
 import ua.com.foxminded.jetpacknavtest.di.qualifiers.Username
 
@@ -18,6 +21,8 @@ class UserModule {
     interface Bindings {
         @Binds
         fun bindUserPreferences(impl: UserPreferences): IUserPreferences
+        @Binds
+        fun bindTripsRepository(impl: TripsRepository): ITripsRepository
     }
 
     @Provides
@@ -30,4 +35,9 @@ class UserModule {
     @UserScope
     fun provideUserPreferences(@UserSharedPrefs sharedPreferences: SharedPreferences, gson: Gson): UserPreferences =
         UserPreferences(sharedPreferences, gson)
+
+    @Provides
+    @UserScope
+    fun provideTripsRepository( prefs:UserPreferences, api: Api):TripsRepository =
+        TripsRepository(prefs, api)
 }
