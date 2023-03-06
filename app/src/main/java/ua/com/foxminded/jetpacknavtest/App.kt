@@ -7,7 +7,6 @@ import ua.com.foxminded.jetpacknavtest.di.DaggerAppComponent
 import ua.com.foxminded.jetpacknavtest.di.DebuggingClass
 import ua.com.foxminded.jetpacknavtest.user.ILoginManager
 import javax.inject.Inject
-
 class App: Application() {
 
     lateinit var appComponent: AppComponent
@@ -17,6 +16,7 @@ class App: Application() {
 
     @Inject
     lateinit var loginManager: ILoginManager
+
 
     override fun onCreate() {
         super.onCreate()
@@ -32,11 +32,12 @@ class App: Application() {
         createUserComponentIfLoggedIn()
     }
 
-    private fun createUserComponentIfLoggedIn() =
+    private fun createUserComponentIfLoggedIn() {
         appComponent.appPreferences
             .lastUserUsername
-            ?.takeIf { loginManager.isUserLoggedIn }
             ?.let { username ->
                 loginManager.createUserComponent(username)
             }
+    }
 }
+

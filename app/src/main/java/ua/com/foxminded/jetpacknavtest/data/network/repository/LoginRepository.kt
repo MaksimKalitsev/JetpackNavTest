@@ -34,10 +34,8 @@ class LoginRepository(
         try {
             val responseServer = api.logOut(cookie)
             if (responseServer.isSuccessful) {
-                // todo: check actual cookie presence
                 val logOutResponse: String? = responseServer.headers()["set-cookie"]
-                logOutResponse?.checkEmptyCookie()
-                Result.success(Unit)
+                if (logOutResponse?.checkEmptyCookie() == true) Result.success(Unit) else Result.failure(IllegalStateException("Cookie hasn't been deleted"))
             } else Result.failure(IllegalStateException("Logout exception"))
 
         } catch (ex: Exception) {
@@ -57,7 +55,10 @@ class LoginRepository(
 
     private fun String.checkEmptyCookie(): Boolean {
         val splitCookie: List<String> = split(";")
-        return splitCookie[0].split("=").size == 1
+        return splitCookie.any {
+            val splitPair = it.split("=")
+            splitPair.size==2||splitPair[0].isBlank()||splitPair[1].isBlank()
+        }
     }
 }
 

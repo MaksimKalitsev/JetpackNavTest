@@ -1,17 +1,16 @@
-package ua.com.foxminded.jetpacknavtest.ui.notifications
+package ua.com.foxminded.jetpacknavtest.ui.my_vehicles
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import ua.com.foxminded.jetpacknavtest.databinding.FragmentNotificationsBinding
+import ua.com.foxminded.jetpacknavtest.databinding.FragmentMyVehiclesBinding
 
-class NotificationsFragment : Fragment() {
+class MyVehiclesFragment : Fragment() {
 
-    private var _binding: FragmentNotificationsBinding? = null
+    private var _binding: FragmentMyVehiclesBinding? = null
 
 
     private val binding get() = _binding!!
@@ -21,14 +20,14 @@ class NotificationsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val notificationsViewModel =
-            ViewModelProvider(this).get(NotificationsViewModel::class.java)
+        val myVehiclesViewModel =
+            ViewModelProvider(this).get(MyVehiclesViewModel::class.java)
 
-        _binding = FragmentNotificationsBinding.inflate(inflater, container, false)
+        _binding = FragmentMyVehiclesBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-//        val textView: TextView = binding.textNotifications
-//        notificationsViewModel.text.observe(viewLifecycleOwner) {
+//        val textView: TextView = binding.textDashboard
+//        dashboardViewModel.text.observe(viewLifecycleOwner) {
 //            textView.text = it
 //        }
         return root

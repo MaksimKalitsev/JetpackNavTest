@@ -9,7 +9,7 @@
     app:defaultNavHost = "true"
     app:navGraph = "@navigation/authorization_graph"
     android:id="@+id/FragmentContainer"
-    tools:context=".AutorizationActivity"/>
+    tools:context=".AuthorizationActivity"/>
 
 
 

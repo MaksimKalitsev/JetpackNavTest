@@ -84,7 +84,7 @@ class SignInFragment : Fragment() {
                 username = binding.emailTextInput.text.toString(),
                 password = binding.passwordTextInput.text.toString()
             )
-//
+
         }
 
         binding.forgotPassword.setOnClickListener {

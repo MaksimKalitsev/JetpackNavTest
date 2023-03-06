@@ -28,7 +28,7 @@ data class LoginResponse(
     @SerializedName("access")
     val access: List<PrefsResponse>,
     @SerializedName("localisation")
-    val localizationResponse: LocalizationResponse,
+    val localizationResponse: LocalizationResponse
 ) {
 
     fun toLoginInfo(password : String, cookie : String): LoginInfo = LoginInfo(

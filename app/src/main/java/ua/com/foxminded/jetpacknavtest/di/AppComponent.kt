@@ -7,6 +7,7 @@ import ua.com.foxminded.jetpacknavtest.App
 import ua.com.foxminded.jetpacknavtest.data.AppPreferences
 import ua.com.foxminded.jetpacknavtest.ui.signin.SignInFragment
 import ua.com.foxminded.jetpacknavtest.ui.signin.SignInViewModel
+import ua.com.foxminded.jetpacknavtest.SplashActivity
 
 @Component(modules = [AppModule::class])
 @AppScope
@@ -26,4 +27,5 @@ interface AppComponent {
     fun inject(app: App)
     fun inject(fragment: SignInFragment)
     fun inject(vm: SignInViewModel)
+    fun inject(activity: SplashActivity)
 }

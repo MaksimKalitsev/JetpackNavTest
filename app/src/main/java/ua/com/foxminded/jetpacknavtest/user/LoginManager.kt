@@ -30,7 +30,9 @@ class LoginManager(
     override var userComponent: UserComponent? = null
 
     override val isUserLoggedIn: Boolean
-        get() = userComponent?.userPreferences?.username?.isNotBlank() ?: false
+        get() = kotlin.run {
+            userComponent?.userPreferences?.username?.isNotBlank() ?: false
+        }
 
     override suspend fun login(username: String, password: String): Result<Unit> {
         val result: Result<LoginInfo> = withContext(dispatchersProvider.io) {
@@ -57,7 +59,7 @@ class LoginManager(
         return if (result.isSuccess){
             clearUserData()
             Result.success(Unit)
-        } else Result.failure(result.exceptionOrNull()?:Exception("Something exception"))
+        } else Result.failure(result.exceptionOrNull() ?: Exception("Something exception"))
     }
 
     override fun createUserComponent(username: String) {

@@ -3,7 +3,9 @@ package ua.com.foxminded.jetpacknavtest.data.network
 import retrofit2.Response
 import retrofit2.http.*
 import ua.com.foxminded.jetpacknavtest.data.models.DriverInfo
+import ua.com.foxminded.jetpacknavtest.data.network.requests.CustomReportRequest
 import ua.com.foxminded.jetpacknavtest.data.network.responses.LoginResponse
+import ua.com.foxminded.jetpacknavtest.data.network.responses.TripsResponse
 
 interface Api {
     @FormUrlEncoded
@@ -27,5 +29,8 @@ interface Api {
     suspend fun getDrivers(
         @Header("Cookie") cookie: String
     ): List<DriverInfo>
+
+    @POST("custom_reports")
+    suspend fun getTrips(@Body body:CustomReportRequest): TripsResponse
 
 }

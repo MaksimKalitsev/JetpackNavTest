@@ -6,16 +6,19 @@
     <string name="password">Password</string>
     <string name="forgot_password">Forgot password?</string>
     <string name="button_log_in">Log in</string>
+    <string name="button_log_out">Log out</string>
     <string name="reset">Reset</string>
     <string name="enter_username">Enter your username to reset password</string>
     <string name="reset_password">Reset Password</string>
     <string name="title_activity_bottom">BottomActivity</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
-    <string name="dashboard_fragment">This is dashboard fragment</string>
-    <string name="home_fragment">This is home fragment</string>
-    <string name="notification_fragment">This is notification fragment</string>
+    <string name="title_myTrips">My trips</string>
+    <string name="title_myVehicles">My vehicles</string>
+    <string name="title_driverScore">Driver Score</string>
+    <string name="title_profile">Profile</string>
+    <string name="myvehicles_fragment">This is myVehicles fragment</string>
+    <string name="mytrips_fragment">This is myTrips fragment</string>
+    <string name="profile_fragment">This is profile fragment</string>
+    <string name="driverscore_fragment">This is DriverScore fragment</string>
     <string name="retry_snackbar">RETRY</string>
     <string name="error_snackbar">Something wrong</string>
 </resources>

@@ -37,6 +37,8 @@ android {
 }
 
 dependencies {
+    implementation 'joda-time:joda-time:2.10.12'
+
     implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
     implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
     implementation 'androidx.fragment:fragment-ktx:1.5.5'
@@ -56,6 +58,7 @@ dependencies {
     implementation "com.jakewharton.timber:timber:$timberVersion"
 
     implementation "com.google.dagger:dagger:$dagger2Version"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     kapt "com.google.dagger:dagger-compiler:$dagger2Version"
     kapt "com.google.dagger:dagger-android-processor:$dagger2Version"
 

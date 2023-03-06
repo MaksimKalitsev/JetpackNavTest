@@ -6,16 +6,21 @@
         <entry key="..\:/Users/User/JetpackNavTest2/app/src/main/res/drawable/ic_lock_password.xml" value="0.1715" />
         <entry key="..\:/Users/User/JetpackNavTest2/app/src/main/res/drawable/mybutton.xml" value="0.1715" />
         <entry key="..\:/Users/User/JetpackNavTest2/app/src/main/res/drawable/progressbar.xml" value="0.1205" />
+        <entry key="..\:/Users/User/JetpackNavTest2/app/src/main/res/drawable/shape_button_logout_radius.xml" value="0.1205" />
         <entry key="..\:/Users/User/JetpackNavTest2/app/src/main/res/drawable/shape_primary_button_disabled.xml" value="0.1715" />
         <entry key="..\:/Users/User/JetpackNavTest2/app/src/main/res/drawable/shape_primary_button_enabled.xml" value="0.1715" />
         <entry key="..\:/Users/User/JetpackNavTest2/app/src/main/res/drawable/shape_progressbar.xml" value="0.1575" />
         <entry key="..\:/Users/User/JetpackNavTest2/app/src/main/res/layout-v28/fragment_sign_in.xml" value="0.1675929884566054" />
         <entry key="..\:/Users/User/JetpackNavTest2/app/src/main/res/layout/activity_autorization.xml" value="0.15604959384352288" />
         <entry key="..\:/Users/User/JetpackNavTest2/app/src/main/res/layout/activity_bottom.xml" value="0.25" />
-        <entry key="..\:/Users/User/JetpackNavTest2/app/src/main/res/layout/activity_main.xml" value="0.1675929884566054" />
+        <entry key="..\:/Users/User/JetpackNavTest2/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/Users/User/JetpackNavTest2/app/src/main/res/layout/activity_splash.xml" value="0.1675929884566054" />
         <entry key="..\:/Users/User/JetpackNavTest2/app/src/main/res/layout/fragment_dashboard.xml" value="0.25" />
+        <entry key="..\:/Users/User/JetpackNavTest2/app/src/main/res/layout/fragment_driver_score.xml" value="0.15604959384352288" />
         <entry key="..\:/Users/User/JetpackNavTest2/app/src/main/res/layout/fragment_home.xml" value="0.1675929884566054" />
+        <entry key="..\:/Users/User/JetpackNavTest2/app/src/main/res/layout/fragment_my_trips.xml" value="0.15604959384352288" />
         <entry key="..\:/Users/User/JetpackNavTest2/app/src/main/res/layout/fragment_notifications.xml" value="0.1675929884566054" />
+        <entry key="..\:/Users/User/JetpackNavTest2/app/src/main/res/layout/fragment_profile.xml" value="0.14450619923044036" />
         <entry key="..\:/Users/User/JetpackNavTest2/app/src/main/res/layout/fragment_reset_password.xml" value="0.25" />
         <entry key="..\:/Users/User/JetpackNavTest2/app/src/main/res/layout/fragment_sign_in.xml" value="0.25" />
         <entry key="..\:/Users/User/JetpackNavTest2/app/src/main/res/menu/bottom_nav_menu.xml" value="0.25" />

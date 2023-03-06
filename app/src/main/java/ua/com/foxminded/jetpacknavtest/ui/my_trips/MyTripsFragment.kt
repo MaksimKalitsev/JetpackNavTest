@@ -1,17 +1,16 @@
-package ua.com.foxminded.jetpacknavtest.ui.dashboard
+package ua.com.foxminded.jetpacknavtest.ui.my_trips
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import ua.com.foxminded.jetpacknavtest.databinding.FragmentDashboardBinding
+import ua.com.foxminded.jetpacknavtest.databinding.FragmentMyTripsBinding
 
-class DashboardFragment : Fragment() {
+class MyTripsFragment : Fragment() {
 
-    private var _binding: FragmentDashboardBinding? = null
+    private var _binding: FragmentMyTripsBinding? = null
 
 
     private val binding get() = _binding!!
@@ -21,14 +20,14 @@ class DashboardFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val dashboardViewModel =
-            ViewModelProvider(this).get(DashboardViewModel::class.java)
+        val myTripsViewModel =
+            ViewModelProvider(this).get(MyTripsViewModel::class.java)
 
-        _binding = FragmentDashboardBinding.inflate(inflater, container, false)
+        _binding = FragmentMyTripsBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-//        val textView: TextView = binding.textDashboard
-//        dashboardViewModel.text.observe(viewLifecycleOwner) {
+//        val textView: TextView = binding.textHome
+//        homeViewModel.text.observe(viewLifecycleOwner) {
 //            textView.text = it
 //        }
         return root

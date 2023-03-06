@@ -9,7 +9,7 @@ import androidx.navigation.ui.NavigationUI
 import ua.com.foxminded.jetpacknavtest.databinding.ActivityAutorizationBinding
 
 
-class AutorizationActivity : AppCompatActivity() {
+class AuthorizationActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAutorizationBinding
     private lateinit var navController: NavController
 

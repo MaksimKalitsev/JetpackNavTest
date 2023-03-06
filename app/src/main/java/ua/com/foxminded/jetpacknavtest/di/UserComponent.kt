@@ -4,6 +4,7 @@ import dagger.BindsInstance
 import dagger.Subcomponent
 import ua.com.foxminded.jetpacknavtest.data.IUserPreferences
 import ua.com.foxminded.jetpacknavtest.di.qualifiers.Username
+import ua.com.foxminded.jetpacknavtest.ui.profile.ProfileViewModel
 
 @Subcomponent(modules = [UserModule::class])
 @UserScope
@@ -17,4 +18,6 @@ interface UserComponent {
             @BindsInstance @Username username: String
         ): UserComponent
     }
+
+    fun inject(vm: ProfileViewModel)
 }

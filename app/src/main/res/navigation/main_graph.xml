@@ -3,23 +3,36 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/navigation_myTrips">
+
+    <activity
+        android:id="@+id/authorizationActivity"
+        android:name="ua.com.foxminded.jetpacknavtest.AuthorizationActivity" />
+
+    <action
+        android:id="@+id/action_MainActivity_to_AuthorizationActivity"
+        app:destination="@+id/authorizationActivity" />
 
     <fragment
-        android:id="@+id/navigation_home"
-        android:name="ua.com.foxminded.jetpacknavtest.ui.home.HomeFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        android:id="@+id/navigation_myTrips"
+        android:name="ua.com.foxminded.jetpacknavtest.ui.my_trips.MyTripsFragment"
+        android:label="@string/title_myTrips"
+        tools:layout="@layout/fragment_my_trips" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="ua.com.foxminded.jetpacknavtest.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_myVehicles"
+        android:name="ua.com.foxminded.jetpacknavtest.ui.my_vehicles.MyVehiclesFragment"
+        android:label="@string/title_myVehicles"
+        tools:layout="@layout/fragment_my_vehicles" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="ua.com.foxminded.jetpacknavtest.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/navigation_driverScore"
+        android:name="ua.com.foxminded.jetpacknavtest.ui.driver_score.DriverScoreFragment"
+        android:label="@string/title_driverScore"
+        tools:layout="@layout/fragment_driver_score" />
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="ua.com.foxminded.jetpacknavtest.ui.profile.ProfileFragment"
+        android:label="@string/title_profile"
+        tools:layout="@layout/fragment_profile" />
 </navigation>
